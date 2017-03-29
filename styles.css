@@ -1,4 +1,10 @@
-#logo {
-    width: 45vw;
-    margin: 20vh auto 0;
+body {
+    margin: 0;
 }
+
+#wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+#logo {}
