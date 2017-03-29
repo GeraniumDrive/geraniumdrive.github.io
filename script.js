@@ -1,19 +1,32 @@
 
 function resizeAndRepositionLogo() {
 
-    var logo = d3.select("#logo"),
-        dimensions = logo.node().getBBox(),
+    var logo = d3.selectAll(".logo"),
         windowHeight = window.innerHeight,
         windowWidth = window.innerWidth,
-        ratio = logo.node().getBBox().height / logo.node().getBBox().width,
-        newWidth = windowWidth/2,
-        newHeight = ratio * newWidth
+        newWidth = windowWidth/2
+    console.log(logo.size())
+        
+
+    // logo.attr('width', newWidth)
+    //     .attr('x', windowWidth/2 - newWidth/2)
+    //     .attr('y', windowHeight/2 - newHeight/2)
 
     logo.attr('width', newWidth)
         .attr('x', windowWidth/2 - newWidth/2)
-        .attr('y', windowHeight/2 - newHeight/2)
+        .attr('y', function(d, i) {
+            console.log(this)
+            console.log(d)
+            console.log(i)
+            var dimensions = this.getBBox(),
+                ratio = dimensions.height / dimensions.width,
+                newHeight = ratio * newWidth
+
+
+            return windowHeight/2 - newHeight/2
+        })
 }
-if (d3.select("#logo").size() === 1) {
+if (d3.select(".logo").size() >= 1) {
     // window.addEventListener('resize', resizeAndRepositionLogo)
     resizeAndRepositionLogo()
 }
