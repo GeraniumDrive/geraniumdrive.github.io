@@ -1,9 +1,9 @@
 
-function resizeAndRepositionLogo() {
+function positionAndSize() {
 
     var logo = d3.selectAll(".logo")
 
-    // Set view box
+    // Set view box for logo
     logo.attr('viewBox', function() {
         var dimensions = this.getBBox()
         return '0 0 ' + dimensions.width + ' ' + dimensions.height
@@ -32,28 +32,43 @@ function resizeAndRepositionLogo() {
         .attr('height', forefrontHeight)
         .attr('x', window.innerWidth/2 - logoForefront.attr('width')/2)
         .attr('y', window.innerHeight/2 - logoForefront.attr('height')/2)
+
+    var bottomBlob = d3.select('#botBlob'),
+        topBlob = d3.select('#topBlob')
+        
+    bottomBlob.attr('transform', function() {
+        var dimensions = this.getBBox(),
+            scaleWidthRatio = logoBackground.attr('width') / dimensions.width
+            xPosDifference = ((window.innerWidth/2 - logoBackground.attr('width')/2) - dimensions.x)/scaleWidthRatio,
+            yPosDistance = window.innerHeight - dimensions.y - (dimensions.height/1.5)
+
+        return 'scale(' + scaleWidthRatio + ',1) ' +
+            'translate(' + xPosDifference + ',' + yPosDistance + ')'
+    })
+
+    topBlob.attr('transform', function() {
+        var dimensions = this.getBBox(),
+            scaleWidthRatio = logoBackground.attr('width') / dimensions.width
+            xPosDifference = ((window.innerWidth/2 - logoBackground.attr('width')/2) - dimensions.x)/scaleWidthRatio,
+            yPosDistance = 0 - dimensions.y - (dimensions.height/3)
+
+        return 'scale(' + scaleWidthRatio + ',1) ' +
+            'translate(' + xPosDifference + ',' + yPosDistance + ')'
+    })
 }
 if (d3.select(".logo").size() >= 1) {
-    window.addEventListener('resize', resizeAndRepositionLogo)
-    resizeAndRepositionLogo()
+    window.addEventListener('resize', positionAndSize)
+    positionAndSize()
 }
 
-// function blobs() {
-//     var blobContainer = d3.select('#blobs'),
-//         windowHeight = window.innerHeight,
-//         windowWidth = window.innerWidth
+function blobs() {
+    // xScale = d3.scaleLinear().domain([0, blobs.size()+1]).range([0, window.innerWidth])
 
-//     blobContainer.attr('width', windowWidth).attr('height', windowHeight)
+    var data = [0, 0, 0]
 
-//     var blobs = d3.selectAll('.blob'),
-//         xScale = d3.scaleLinear().domain([0, blobs.size()+1]).range([0, window.innerWidth])
-
-//     // Set initial blob position
-//     blobs.attr('transform', function(d, i) { return 'translate(' + xScale(i+1) + ',-100)' })
-
-//     // Start Y axis transition
-//     blobs.transition().duration(10000)
-//         .attr('transform', function(d, i) { return 'translate(' + xScale(i+1) + ',' + windowHeight + ')' })
-// }
-// window.addEventListener('resize', blobs)
+    d3.select('#blobs').selectAll('path')
+        .data(data)
+        .enter()
+        .append('path').attr('class', 'blob')
+}
 // blobs()
