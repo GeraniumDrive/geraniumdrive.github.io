@@ -1,10 +1,7 @@
 
 function resizeAndRepositionLogo() {
 
-    var logo = d3.selectAll(".logo"),
-        windowHeight = window.innerHeight,
-        windowWidth = window.innerWidth,
-        newWidth = windowWidth/2
+    var logo = d3.selectAll(".logo")
 
     // Set view box
     logo.attr('viewBox', function() {
