@@ -17,8 +17,8 @@ function positionAndSize() {
 
     logoBackground.attr('width', backgroundWidth)
         .attr('height', backgroundHeight)
-        .attr('x', window.innerWidth/2 - logoBackground.attr('width')/2)
-        .attr('y', window.innerHeight/2 - logoBackground.attr('height')/2)
+        .attr('x', window.innerWidth/2 - backgroundWidth/2)
+        .attr('y', window.innerHeight/2 - backgroundHeight/2)
 
     var logoForefront = d3.select('#logoForefront'),
         forefrontDimensions = logoForefront.node().getBBox(),
@@ -38,8 +38,8 @@ function positionAndSize() {
         
     bottomBlob.attr('transform', function() {
         var dimensions = this.getBBox(),
-            scaleWidthRatio = logoBackground.attr('width') / dimensions.width
-            xPosDifference = ((window.innerWidth/2 - logoBackground.attr('width')/2) - dimensions.x)/scaleWidthRatio,
+            scaleWidthRatio = backgroundWidth / dimensions.width
+            xPosDifference = ((window.innerWidth/2 - backgroundWidth/2) - dimensions.x)/scaleWidthRatio,
             yPosDistance = window.innerHeight - dimensions.y - (dimensions.height/1.5)
 
         return 'scale(' + scaleWidthRatio + ',1) ' +
@@ -48,8 +48,8 @@ function positionAndSize() {
 
     topBlob.attr('transform', function() {
         var dimensions = this.getBBox(),
-            scaleWidthRatio = logoBackground.attr('width') / dimensions.width
-            xPosDifference = ((window.innerWidth/2 - logoBackground.attr('width')/2) - dimensions.x)/scaleWidthRatio,
+            scaleWidthRatio = backgroundWidth / dimensions.width
+            xPosDifference = ((window.innerWidth/2 - backgroundWidth/2) - dimensions.x)/scaleWidthRatio,
             yPosDistance = 0 - dimensions.y - (dimensions.height/3)
 
         return 'scale(' + scaleWidthRatio + ',1) ' +
@@ -61,35 +61,69 @@ if (d3.select(".logo").size() >= 1) {
     positionAndSize()
 }
 
-function blobs() {
-    // xScale = d3.scaleLinear().domain([0, blobs.size()+1]).range([0, window.innerWidth])
-
+function initializeBlobs() {
     // Depending on some number specified... copy paths of existing blobs and duplicate them
-    // Maybe we can just copy each blob the same number of times? (always even count of blobs)
-    var blobTemplates = d3.select('#blobs').selectAll('path')
+    var blobsContainer = d3.select('#blobs'),
+        blobTemplates = blobsContainer.selectAll('path'),
+        blobMultiplier = 10
 
-    // Position blobs
-    var allBlobs = d3.select('#blobs').selectAll('path'),
-        midpoint = window.innerWidth/2, deviation = midpoint/2
+    blobTemplates.each(function duplicate() {
+        var currentBlob = d3.select(this),
+            path = currentBlob.attr('d'),
+            style = currentBlob.attr('style')
 
-    allBlobs.attr('transform', function() {
-        var xPos = d3.randomUniform(midpoint - deviation, midpoint + deviation)(),
-            dimensions = this.getBBox()
-
-        // TODO change starting yposition randomly? (top/bottom?)
-        return 'translate(' + xPos + ',-' + dimensions.height + ')'
+        for(var dup = 1; dup < blobMultiplier; dup++) {
+            blobsContainer
+                .append('path')
+                .attr('d', path)
+                .attr('style', style)
+        }
     })
+}
 
-    // Apply transitions to each blob
-    allBlobs.transition()
-        .duration(function() { return d3.randomUniform(750, 10000)() })
-        .attr('transform', function() {
-            var currentValue = d3.select(this).attr('transform'),
-                xPos = currentValue.slice(currentValue.indexOf('(') + 1, currentValue.indexOf(',')),
-                dimensions = this.getBBox(),
-                newYPos = dimensions.y >= 0 ? (0 - dimensions.height) : (window.innerHeight + dimensions.height)
-            
-            return 'translate(' + xPos + ',' + newYPos + ')'
+function moveBlobs() {
+
+    function blobInitialPosition() {
+        var midpoint = window.innerWidth/2, deviation = midpoint/2,
+            xPos = d3.randomUniform(midpoint - deviation, midpoint + deviation)(),
+            dimensions = this.getBBox(),
+            topOrBottom = Math.random() >= 0.5,
+            topPos = -1 * dimensions.height,
+            bottomPos = window.innerHeight + dimensions.height
+
+        return 'translate(' + xPos + ',' + (topOrBottom ? topPos : bottomPos) + ')'
+    }
+
+    function blobTransform() {
+        var currentValue = d3.select(this).attr('transform'),
+            xTranslate = parseInt(currentValue.slice(currentValue.indexOf('(') + 1, currentValue.indexOf(','))),
+            yTranslate = parseInt(currentValue.slice(currentValue.indexOf(',') + 1, currentValue.indexOf(')'))),
+            dimensions = this.getBBox(),
+            xPos = dimensions.x + xTranslate, yPos = dimensions.y + yTranslate,
+            newYPos = yPos >= 0 ? (0 - dimensions.height) : (window.innerHeight + dimensions.height)
+        
+        return 'translate(' + xPos + ',' + newYPos + ')'
+    }
+
+    var allBlobs = d3.select('#blobs').selectAll('path')
+    allBlobs.interrupt() // disable any pending transitions
+    allBlobs
+        .attr('transform', blobInitialPosition)
+        .transition() // Transition up/down
+        .duration(function() {
+            // TODO maybe base speed off of the size of the blob?
+            return d3.randomUniform(9000, 90000)()
+        })
+        .ease(d3.easeLinear)
+        .on('start', function repeat() { //TODO cancel transitions on resize, and restart
+            // Begin transform on start
+            d3.active(this)
+                .attr('transform', blobTransform)
+                .transition() // now reverse!
+                .attr('transform', blobTransform)
+                .on('start', repeat) // repeat!
         })
 }
-blobs()
+initializeBlobs()
+moveBlobs()
+window.addEventListener('resize', moveBlobs)
