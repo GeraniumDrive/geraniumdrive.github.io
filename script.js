@@ -64,11 +64,32 @@ if (d3.select(".logo").size() >= 1) {
 function blobs() {
     // xScale = d3.scaleLinear().domain([0, blobs.size()+1]).range([0, window.innerWidth])
 
-    var data = [0, 0, 0]
+    // Depending on some number specified... copy paths of existing blobs and duplicate them
+    // Maybe we can just copy each blob the same number of times? (always even count of blobs)
+    var blobTemplates = d3.select('#blobs').selectAll('path')
 
-    d3.select('#blobs').selectAll('path')
-        .data(data)
-        .enter()
-        .append('path').attr('class', 'blob')
+    // Position blobs
+    var allBlobs = d3.select('#blobs').selectAll('path'),
+        midpoint = window.innerWidth/2, deviation = midpoint/2
+
+    allBlobs.attr('transform', function() {
+        var xPos = d3.randomUniform(midpoint - deviation, midpoint + deviation)(),
+            dimensions = this.getBBox()
+
+        // TODO change starting yposition randomly? (top/bottom?)
+        return 'translate(' + xPos + ',-' + dimensions.height + ')'
+    })
+
+    // Apply transitions to each blob
+    allBlobs.transition()
+        .duration(function() { return d3.randomUniform(750, 10000)() })
+        .attr('transform', function() {
+            var currentValue = d3.select(this).attr('transform'),
+                xPos = currentValue.slice(currentValue.indexOf('(') + 1, currentValue.indexOf(',')),
+                dimensions = this.getBBox(),
+                newYPos = dimensions.y >= 0 ? (0 - dimensions.height) : (window.innerHeight + dimensions.height)
+            
+            return 'translate(' + xPos + ',' + newYPos + ')'
+        })
 }
-// blobs()
+blobs()
