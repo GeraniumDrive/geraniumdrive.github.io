@@ -1,5 +1,6 @@
 html, body {
     overflow: hidden;
+    position: relative;
 }
 
 body {
@@ -7,7 +8,6 @@ body {
     max-width: 100vw;
     max-height: 100vh;
     background-color: #63007b;
-    position: relative;
 }
 
 #wrapper {

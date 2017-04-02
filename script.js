@@ -5,6 +5,10 @@ window.mobilecheck = function() {
     return check;
 }
 
+document.ontouchmove = function(event){
+    event.preventDefault();
+}
+
 function positionAndSize() {
 
     var logo = d3.selectAll(".logo")
@@ -134,14 +138,17 @@ function moveBlobs() {
         })
 }
 
-if (d3.select(".logo").size() >= 1) {
-    window.addEventListener('resize', positionAndSize)
-    positionAndSize()
+function enableFilter() {
+    d3.select('#filterGroup').attr('filter', 'url(#goo)')
 }
 
+
+positionAndSize()
 initializeBlobs()
+moveBlobs()
+window.addEventListener('resize', positionAndSize)
+window.addEventListener('resize', moveBlobs)
 
 if (!window.mobilecheck()) {
-    moveBlobs()
-    window.addEventListener('resize', moveBlobs)
+    enableFilter()
 }
