@@ -11,8 +11,10 @@ body {
 }
 
 #wrapper {
-    width: 100vw;
-    height: 100vh;
+    margin: 30px auto;
+    display: block;
 }
 
-#logo {}
+.blob {
+    fill: #0091ff;
+}
