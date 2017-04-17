@@ -7,14 +7,77 @@ body {
     margin: 0;
     max-width: 100vw;
     max-height: 100vh;
-    background-color: #63007b;
+    /*background-color: #63007b; /* Purple color */
+    background-color: #11688a; /* Dark blue color */
 }
 
 #wrapper {
     margin: 30px auto;
     display: block;
+    width: 25vw;
 }
 
-.blob {
-    fill: #0091ff;
+#logo {
+    /*stroke:#ff003b; Red outline*/
+    stroke:white; /*Red outline*/
+    stroke-width: 1.14552689;
+    display:inline;
+    fill:#ff6600;
+}
+
+.blob, .stationaryBlob {
+    /*fill: #0091ff; /* Blue color*/
+    fill: #ff003b; /* Red/Pink color */
+    /*fill: #ff0000;*/
+    /*fill: #d6390f;*/
+}
+
+/* Desktops */
+@media only screen and (max-width: 1000px) and (min-width: 800px) {
+    #wrapper {
+        width: 30vw;
+    }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 600px) {
+    #wrapper {
+        width: 35vw;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 400px) {
+    #wrapper {
+        width: 40vw;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #wrapper {
+        width: 45vw;
+    }
+}
+
+/* Mobile Devices */
+@media only screen and (max-device-width: 1000px) and (min-device-width: 800px) {
+    #wrapper {
+        width: 30vw;
+    }
+}
+
+@media only screen and (max-device-width: 800px) and (min-device-width: 600px) {
+    #wrapper {
+        width: 35vw;
+    }
+}
+
+@media only screen and (max-device-width: 600px) and (min-device-width: 400px) {
+    #wrapper {
+        width: 40vw;
+    }
+}
+
+@media only screen and (max-device-width: 400px) {
+    #wrapper {
+        width: 38vw;
+    }
 }
