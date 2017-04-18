@@ -39,7 +39,7 @@ function animate() {
 
     for(var i = 0; i < blobs.length; i++) {
       var currentBlob = d3.select(blobs[i]).node().getBBox(),
-        speed = (currentBlob.width + currentBlob.height)/randomBetween(3, 4) +
+        speed = (currentBlob.width + currentBlob.height)/randomBetween(2, 4) +
             randomBetween(1, currentBlob.width)
       
       TweenMax.to(blobs[i], /*randomBetween(5, 55)*/speed, {
