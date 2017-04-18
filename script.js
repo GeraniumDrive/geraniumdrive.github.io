@@ -32,6 +32,18 @@ function randomBetween(min,max)
     return Math.floor(Math.random()*(max-min+1)+min)
 }
 
+function showLogo() {
+    d3.select("#wrapper").classed("hidden", false)
+}
+
+function showContent() {
+    d3.select("#content").classed("hidden", false)
+}
+
+function showBlobs() {
+    d3.select("#lava").classed("hidden", false)
+}
+
 function animate() {
     var logoWrapper = d3.select("#wrapper"),
         logoDimensions = logoWrapper.node().getBBox(),
@@ -42,7 +54,7 @@ function animate() {
         speed = (currentBlob.width + currentBlob.height)/randomBetween(2, 4) +
             randomBetween(1, currentBlob.width)
       
-      TweenMax.to(blobs[i], /*randomBetween(5, 55)*/speed, {
+      TweenMax.to(blobs[i], speed, {
         y:logoDimensions.height*-1,
         repeat:-1,
         yoyo:true,
@@ -51,4 +63,13 @@ function animate() {
     }
 }
 
-animate()
+// Fade in logo
+// Then fade in sections
+showLogo()
+window.setTimeout(showContent, 1000)
+
+if (!window.mobilecheck()) {
+    // Fade in blobs
+    showBlobs()
+    animate()
+}
