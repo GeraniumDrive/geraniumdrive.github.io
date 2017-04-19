@@ -98,6 +98,7 @@ function animate() {
     }
 }
 
+var windowWidth = window.innerWidth
 window.fbAsyncInit = function() {
   FB.init({
     appId      : '1226055317538283',
@@ -107,9 +108,13 @@ window.fbAsyncInit = function() {
   FB.AppEvents.logPageView()
 
   window.setTimeout(loadFacebookPlugin, 2000)
-  window.addEventListener('resize', debouncer(loadFacebookPlugin))
+  window.addEventListener('resize', debouncer(() => {
+    if (window.innerWidth !== windowWidth) {
+        windowWidth = window.innerWidth
+        loadFacebookPlugin()
+    }
+  }))
 }
-
 
 showLogo()
 if (!window.mobilecheck()) showBlobs()
