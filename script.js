@@ -49,7 +49,9 @@ function showFacebook() {
 
 function loadFacebookPlugin() {
     var container = d3.select('#media .panelBody'),
-        dimensions = container.node().getBoundingClientRect()
+        dimensions = container.node().getBoundingClientRect(),
+        width = Math.round(dimensions.width)-20,
+        height = Math.round(dimensions.height)
 
     container.select('.fb-page').remove()
 
@@ -57,11 +59,11 @@ function loadFacebookPlugin() {
       .attr('data-href', 'https://www.facebook.com/geraniumdrive/')
       .attr('data-tabs', 'timeline,events,messages')
       .attr('data-small-header', 'false')
-      .attr('data-adapt-container-width', 'false')
+      .attr('data-adapt-container-width', 'true')
       .attr('data-hide-cover', 'false')
       .attr('data-show-facepile', 'false')
-      .attr('data-width', Math.round(dimensions.width)-20)
-      .attr('data-height', Math.round(dimensions.height))
+      .attr('data-width', width)
+      .attr('data-height', height)
         .insert('blockquote')
         .classed('fb-xfbml-parse-ignore', true)
         .attr('cite', 'https://www.facebook.com/geraniumdrive/')

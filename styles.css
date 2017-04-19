@@ -31,11 +31,7 @@ body {
     transition: 1s all ease-in;
 }
 
-.loader {
-    transition: 1s all ease-in;
-}
-
-#lava.hidden, .loader.hidden {
+#lava.hidden {
     fill-opacity: 0;
 }
 
@@ -98,8 +94,10 @@ h1 {
     text-align: center;
 }
 
-.loader {
-    width: 8vw;
+#bandcampIframe {
+    border: 0;
+    width: 70%;
+    height: 600px;
 }
 
 /* Desktops */
@@ -131,10 +129,6 @@ h1 {
     #content {
         width: 95vw;
     }
-
-    .loader {
-        width: 20vw;
-    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -144,10 +138,6 @@ h1 {
 
     #content {
         width: 100vw;
-    }
-
-    .loader {
-        width: 20vw;
     }
 }
 
@@ -180,10 +170,6 @@ h1 {
     #content {
         width: 95vw;
     }
-
-    .loader {
-        width: 15vw;
-    }
 }
 
 @media only screen and (max-device-width: 400px) {
@@ -194,8 +180,23 @@ h1 {
     #content {
         width: 100vw;
     }
+}
 
-    .loader {
-        width: 15vw;
+/* Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    h1 {
+        font-size: 4em;
+    } 
+
+    #releases {
+        height: 1300px;
+    }
+
+    #bandcampIframe {
+        height: 1100px;
+    }
+
+    #media {
+        height: 1200px;
     }
 }
