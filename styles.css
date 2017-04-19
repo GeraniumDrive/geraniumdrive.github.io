@@ -1,6 +1,6 @@
-html, body {
-    /*overflow: hidden;
-    position: relative;*/
+@font-face {
+    font-family: "BellbottomLaser";
+    src: url(bellbottom.ttf) format("truetype");
 }
 
 body {
@@ -14,14 +14,14 @@ body {
     background-color: #0C78DC;
 }
 
-#wrapper {
+#logoLamp {
     display: block;
     margin: 30px auto;
     width: 25vw;
     transition: 0.5s opacity ease-in;
 }
 
-#logo {
+#logoBase {
     /*stroke:#ff003b; Red outline*/
     stroke: white; /*Red outline*/
     stroke-width: 1.14552689;
@@ -41,7 +41,11 @@ body {
     transition: 1s all ease-in;
 }
 
-#lava.hidden {
+#loader {
+    transition: 1s all ease-in;
+}
+
+#lava.hidden, #loader.hidden {
     fill-opacity: 0;
 }
 
@@ -57,7 +61,7 @@ body {
     top: 0;
     display: flex;
     flex-direction: row;
-    width: 75vw;
+    width: 85vw;
     margin: 0 auto;
     transition: 0.25s opacity ease-in, 0.25s top linear;
 }
@@ -70,16 +74,38 @@ body {
     flex: 2 1;
     margin: 10px 1vw;
     box-sizing: border-box;
-    border: 3px solid white;
+    /*border: 3px solid white;*/
     border-radius: 20px;
     min-height: 60vh;
     box-shadow: 2px 3px 1px black;
 }
 
+#releases {
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(albumart.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#media {
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(band.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 h1 {
-    font-family: 'Courgette', cursive;
+    /*font-family: 'Courgette', cursive;*/
+    font-family: "BellbottomLaser", Verdana, Tahoma;
     text-align: center;
-    color: #ff6600;
+    color: white;
+    /*color: #ff6600;*/
     /*text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;*/
 }
 
@@ -94,33 +120,34 @@ h1 {
 
 /* Desktops */
 @media only screen and (max-width: 1000px) and (min-width: 800px) {
-    #wrapper {
+    #logoLamp {
         width: 30vw;
     }
 
     #content {
-        width: 90vw;
+        width: 95vw;
     }
 }
 
 @media only screen and (max-width: 800px) and (min-width: 600px) {
-    #wrapper {
+    #logoLamp {
         width: 35vw;
     }
 
     #content {
-        width: 100vw;
+        flex-direction: column;
+        width: 75vw;
     }
 }
 
 @media only screen and (max-width: 600px) and (min-width: 400px) {
-    #wrapper {
+    #logoLamp {
         width: 40vw;
     }
 
     #content {
         flex-direction: column;
-        width: 80vw;
+        width: 90vw;
     }
 
     #loader {
@@ -129,7 +156,7 @@ h1 {
 }
 
 @media only screen and (max-width: 400px) {
-    #wrapper {
+    #logoLamp {
         width: 45vw;
     }
 
@@ -145,33 +172,34 @@ h1 {
 
 /* Mobile Devices */
 @media only screen and (max-device-width: 1000px) and (min-device-width: 800px) {
-    #wrapper {
+    #logoLamp {
         width: 30vw;
     }
 
     #content {
-        width: 90vw;
+        width: 95vw;
     }
 }
 
 @media only screen and (max-device-width: 800px) and (min-device-width: 600px) {
-    #wrapper {
+    #logoLamp {
         width: 35vw;
     }
 
     #content {
-        width: 100vw;
+        flex-direction: column;
+        width: 75vw;
     }
 }
 
 @media only screen and (max-device-width: 600px) and (min-device-width: 400px) {
-    #wrapper {
+    #logoLamp {
         width: 40vw;
     }
 
     #content {
         flex-direction: column;
-        width: 80vw;
+        width: 90vw;
     }
 
     #loader {
@@ -180,7 +208,7 @@ h1 {
 }
 
 @media only screen and (max-device-width: 400px) {
-    #wrapper {
+    #logoLamp {
         width: 38vw;
     }
 

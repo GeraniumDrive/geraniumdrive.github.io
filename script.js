@@ -5,35 +5,13 @@ window.mobilecheck = function() {
     return check;
 }
 
-// function getLogoScaledDimensions() {
-//     var logoWrapper = d3.select("#wrapper"),
-//         logoDimensions = logoWrapper.node().getBBox(),
-//         logoAspectRatio = logoDimensions.height / logoDimensions.width,
-//         logoScale = window.mobilecheck() ? 2.5 : 3.5,
-//         logoWidth = window.innerWidth/logoScale,
-//         logoHeight = logoAspectRatio * logoWidth
-
-//     return {
-//         width: logoWidth,
-//         height: logoHeight,
-//         aspectRatio: logoAspectRatio
-//     }
-// }
-
-// function resize() {
-//     var logoWrapper = d3.select("#wrapper"),
-//         scaledDimensions = getLogoScaledDimensions()
-
-//     logoWrapper.attr('width', scaledDimensions.width)
-// }
-
 function randomBetween(min,max)
 {
     return Math.floor(Math.random()*(max-min+1)+min)
 }
 
 function showLogo() {
-    d3.select("#wrapper").classed("hidden", false)
+    d3.select("#logoLamp").classed("hidden", false)
 }
 
 function showContent() {
@@ -44,8 +22,21 @@ function showBlobs() {
     d3.select("#lava").classed("hidden", false)
 }
 
+function hideSectionLoader() {
+    // TODO take parent anchor as parent
+    d3.select("#loader").classed("hidden", true)
+}
+
+function loadFacebookPlugin() {
+    // Reparse portion of the document
+    // FB.XFBML.parse(document.getElementById('foo'));
+}
+
+function loadBandcampPlugin() {
+}
+
 function animate() {
-    var logoWrapper = d3.select("#wrapper"),
+    var logoWrapper = d3.select("#logoLamp"),
         logoDimensions = logoWrapper.node().getBBox(),
         blobs = document.querySelectorAll('.blob')
 
@@ -63,10 +54,8 @@ function animate() {
     }
 }
 
-// Fade in logo
-// Then fade in sections
 showLogo()
-window.setTimeout(showContent, 1000)
+window.setTimeout(showContent, 2000)
 
 if (!window.mobilecheck()) {
     // Fade in blobs

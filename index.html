@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 </head>
 <body>
-  <svg id="wrapper" class="hidden" viewBox="0 0 665.18665 429.35779">
+  <svg id="logoLamp" class="hidden" viewBox="0 0 665.18665 429.35779">
     <defs>
       <filter id="goo">
         <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
@@ -22,8 +22,8 @@
       </clipPath>
     </defs>
 
-    <g id="logolamp">
-      <use id="logo" xlink:href="#logoPath" />
+    <g>
+      <use id="logoBase" xlink:href="#logoPath" />
       <g id="lava" class="hidden" style="filter:url(#goo)" clip-path="url(#glassMask)">
 
         <!-- Big Blobs -->
@@ -118,11 +118,11 @@
   </svg>
 
   <div id="content" class="hidden">
-    <div class="panel">
+    <div id="releases" class="panel">
       <h1>Listen</h1>
 
       <div class="panelBody">
-        <svg id="loader" viewBox="0 0 135 135" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+        <svg id="loader" viewBox="0 0 135 135" fill="#fff">
           <path class="inner" d="M67.447 58c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10zm9.448 9.447c0 5.523 4.477 10 10 10 5.522 0 10-4.477 10-10s-4.478-10-10-10c-5.523 0-10 4.477-10 10zm-9.448 9.448c-5.523 0-10 4.477-10 10 0 5.522 4.477 10 10 10s10-4.478 10-10c0-5.523-4.477-10-10-10zM58 67.447c0-5.523-4.477-10-10-10s-10 4.477-10 10 4.477 10 10 10 10-4.477 10-10z">
             <animateTransform
               attributeName="transform"
@@ -145,11 +145,11 @@
       </div>
     </div>
 
-    <div class="panel">
-      <h1>Observe</h1>
+    <div id="media" class="panel">
+      <h1>Experience</h1>
 
       <div class="panelBody">
-        <svg id="loader" viewBox="0 0 135 135" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+        <svg id="loader" viewBox="0 0 135 135" fill="#fff">
           <path class="inner" d="M67.447 58c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10zm9.448 9.447c0 5.523 4.477 10 10 10 5.522 0 10-4.477 10-10s-4.478-10-10-10c-5.523 0-10 4.477-10 10zm-9.448 9.448c-5.523 0-10 4.477-10 10 0 5.522 4.477 10 10 10s10-4.478 10-10c0-5.523-4.477-10-10-10zM58 67.447c0-5.523-4.477-10-10-10s-10 4.477-10 10 4.477 10 10 10 10-4.477 10-10z">
             <animateTransform
               attributeName="transform"
@@ -169,6 +169,17 @@
               repeatCount="indefinite"/>
           </path>
         </svg>
+        <!-- <div class="fb-page" data-href="https://www.facebook.com/geraniumdrive/"
+          data-tabs="events,messages"
+          data-small-header="false"
+          data-adapt-container-width="true"
+          data-hide-cover="false"
+          data-show-facepile="true"
+        >
+          <blockquote cite="https://www.facebook.com/geraniumdrive/" class="fb-xfbml-parse-ignore">
+            <a href="https://www.facebook.com/geraniumdrive/">Geranium Drive</a>
+          </blockquote>
+        </div> -->
       </div>
     </div>
   </div>
