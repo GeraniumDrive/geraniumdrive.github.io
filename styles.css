@@ -188,15 +188,17 @@ h1 {
         font-size: 4em;
     } 
 
-    #releases {
-        height: 1300px;
+    #releases, #media {
+        height: 1400px;
     }
 
     #bandcampIframe {
         height: 1100px;
     }
 
-    #media {
-        height: 1200px;
+    .fb_iframe_widget iframe {
+        transform-origin: top;
+        -webkit-transform-origin: top;
+        -moz-transform-origin: top;
     }
 }

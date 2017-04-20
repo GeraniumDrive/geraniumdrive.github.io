@@ -50,10 +50,12 @@ function showFacebook() {
 function loadFacebookPlugin() {
     var container = d3.select('#media .panelBody'),
         dimensions = container.node().getBoundingClientRect(),
-        width = Math.round(dimensions.width)-20,
+        width = Math.min(500, Math.round(dimensions.width)-20),
         height = Math.round(dimensions.height)
 
     container.select('.fb-page').remove()
+
+    if (window.mobilecheck()) height = height/2
 
     container.insert('div').classed('fb-page', true)
       .attr('data-href', 'https://www.facebook.com/geraniumdrive/')
@@ -70,6 +72,12 @@ function loadFacebookPlugin() {
           .insert('a').attr('href', 'https://www.facebook.com/geraniumdrive/')
             .text('Geranium Drive')
     FB.XFBML.parse(document.getElementById('media'))
+
+    if (window.mobilecheck()) {
+        var scale = (dimensions.width/500) + .2
+        d3.select('.fb_iframe_widget iframe').style('transform', 'scale(' + scale + ')')
+    }
+
     window.setTimeout(showFacebook, 1000)
 }
 
