@@ -81,12 +81,9 @@ body {
 }
 
 h1 {
-    /*font-family: 'Courgette', cursive;*/
     font-family: "BellbottomLaser", Verdana, Tahoma;
     text-align: center;
     color: white;
-    /*color: #ff6600;*/
-    /*text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;*/
 }
 
 .panelBody {
@@ -97,6 +94,7 @@ h1 {
 #bandcampIframe {
     border: 0;
     width: 70%;
+    max-width: 600px;
     height: 600px;
 }
 
@@ -188,12 +186,16 @@ h1 {
         font-size: 4em;
     } 
 
-    #releases, #media {
+    #releases {
+        height: 1100px;
+    }
+
+    #media {
         height: 1400px;
     }
 
     #bandcampIframe {
-        height: 1100px;
+        height: 880px;
     }
 
     .fb_iframe_widget iframe {

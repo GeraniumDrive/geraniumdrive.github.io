@@ -13,6 +13,26 @@ window.mobilecheck = function() {
     return check;
 }
 
+function iOS() {
+
+  var iDevices = [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ];
+
+  if (!!navigator.platform) {
+    while (iDevices.length) {
+      if (navigator.platform === iDevices.pop()){ return true; }
+    }
+  }
+
+  return false;
+}
+
 // Stolen from: http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
 function debouncer(func, timeout) {
    var timeoutID , timeout = timeout || 200;
@@ -127,5 +147,5 @@ window.fbAsyncInit = function() {
 }
 
 showLogo()
-if (!window.mobilecheck()) showBlobs()
+if (!window.mobilecheck() && !iOS()) showBlobs()
 window.setTimeout(loadBandcampPlugin, 500)
