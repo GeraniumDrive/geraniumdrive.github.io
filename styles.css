@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "BellbottomLaser";
-    src: url(bellbottom.ttf) format("truetype");
+  font-family: "Courgette";
+  /*src: url(bellbottom.ttf) format("truetype");*/
 }
 
 body {
@@ -9,198 +9,102 @@ body {
     background-color: #0C78DC;
 }
 
-#logoLamp {
-    display: block;
-    margin: 30px auto;
-    width: 25vw;
-    transition: 0.5s opacity ease-in;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Courgette", Verdana, Tahoma;
+  text-align: center;
+  color: white;
 }
 
-#logoBase {
-    stroke: white;
-    stroke-width: 1.14552689;
-    display:inline;
-    fill:#fc7720;
+#logo {
+  margin: 0 auto;
+  display: block;
 }
 
-.hidden {
-    opacity: 0 !important;
+.container {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#lava {
-    transition: 1s all ease-in;
+.top {
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 
-#lava.hidden {
-    fill-opacity: 0;
+.inner {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.blob, .stationaryBlob {
-    fill:#f42d6b;
+.bottom {
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
-#content {
-    position: relative;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    width: 55vw;
-    margin: 0 auto;
+.bandcamp {
+  display: block;
+  border: 0;
+  width: 100%;
+  max-width: 357px;
+  height: 357px;
+  max-height: 357px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.panel {
-    flex: 2 1;
-    margin: 10px 1vw;
-    box-sizing: border-box;
-    border-radius: 20px;
-    box-shadow: 2px 3px 1px black;
-    opacity: 1;
-    transition: 0.25s opacity ease-in;
+.row [class^="col-"]:last-of-type .bandcamp {
+  margin-bottom: 0;
 }
 
-#releases {
-    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(albumart.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 750px;
-}
-
-#media {
-    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(band.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 700px;
-}
-
-h1 {
-    font-family: "BellbottomLaser", Verdana, Tahoma;
-    text-align: center;
-    color: white;
-}
-
-.panelBody {
-    min-height: 80%;
-    text-align: center;
-}
-
-#bandcampIframe {
-    border: 0;
-    width: 70%;
-    max-width: 600px;
-    height: 600px;
+@media only screen and (min-width: 75em) {
+  [class^="col-"][class$="-offset-0"] {
+    margin-left: 0;
+  }
 }
 
 /* Desktops */
-@media only screen and (max-width: 1000px) and (min-width: 800px) {
-    #logoLamp {
-        width: 30vw;
-    }
-
-    #content {
-        width: 65vw;
-    }
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  .bandcamp {
+    height: 304px;
+  }
 }
 
-@media only screen and (max-width: 800px) and (min-width: 600px) {
-    #logoLamp {
-        width: 35vw;
-    }
-
-    #content {
-        width: 75vw;
-    }
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+  .bandcamp {
+    height: 352px;
+  }
 }
 
-@media only screen and (max-width: 600px) and (min-width: 400px) {
-    #logoLamp {
-        width: 40vw;
-    }
-
-    #content {
-        width: 95vw;
-    }
+@media only screen and (max-width: 768px) and (min-width: 500px) {
+  #logo {
+    max-width: 46vw;
+  }
 }
 
-@media only screen and (max-width: 400px) {
-    #logoLamp {
-        width: 45vw;
-    }
+/*
+@media only screen and (max-width: 452px) and (min-width: 400px) {
+}*/
 
-    #content {
-        width: 100vw;
-    }
+@media only screen and (max-width: 452px) {
+  .bandcamp {
+    width: 279px;
+    height: 279px;
+  }
 }
 
 /* Mobile Devices */
-@media only screen and (max-device-width: 1000px) and (min-device-width: 800px) {
-    #logoLamp {
-        width: 30vw;
-    }
-
-    #content {
-        width: 65vw;
-    }
+/*@media only screen and (max-device-width: 1000px) and (min-device-width: 800px) {
 }
 
 @media only screen and (max-device-width: 800px) and (min-device-width: 600px) {
-    #logoLamp {
-        width: 35vw;
-    }
-
-    #content {
-        width: 75vw;
-    }
 }
 
 @media only screen and (max-device-width: 600px) and (min-device-width: 400px) {
-    #logoLamp {
-        width: 40vw;
-    }
-
-    #content {
-        width: 95vw;
-    }
 }
 
 @media only screen and (max-device-width: 400px) {
-    #logoLamp {
-        width: 38vw;
-    }
-
-    #content {
-        width: 100vw;
-    }
-}
+}*/
 
 /* Retina */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    h1 {
-        font-size: 4em;
-    } 
-
-    #releases {
-        height: 1100px;
-    }
-
-    #media {
-        height: 1400px;
-    }
-
-    #bandcampIframe {
-        height: 880px;
-    }
-
-    .fb_iframe_widget iframe {
-        transform-origin: top;
-        -webkit-transform-origin: top;
-        -moz-transform-origin: top;
-    }
 }
