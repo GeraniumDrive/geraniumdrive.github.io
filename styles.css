@@ -9,7 +9,7 @@ body {
     background-color: #0C78DC;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, a, a:visited {
   font-family: "Courgette", Verdana, Tahoma;
   text-align: center;
   color: white;
@@ -54,6 +54,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .row [class^="col-"]:last-of-type .bandcamp {
   margin-bottom: 0;
+}
+
+img.member {
+  width: 100%;
 }
 
 @media only screen and (min-width: 75em) {
