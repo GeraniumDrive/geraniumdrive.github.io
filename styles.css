@@ -83,16 +83,31 @@ img.member {
   #logo {
     max-width: 46vw;
   }
+
+  .bandcamp {
+    width: 340px;
+    height: 340px;
+  }
 }
 
-/*
-@media only screen and (max-width: 452px) and (min-width: 400px) {
-}*/
+@media only screen and (max-width: 768px) {
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .bandcamp {
+    width: 300px;
+    height: 300px;
+  }
+}
 
 @media only screen and (max-width: 452px) {
   .bandcamp {
-    width: 279px;
-    height: 279px;
+    width: 50vw;
+    height: 50vw;
   }
 }
 
@@ -111,4 +126,8 @@ img.member {
 
 /* Retina */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
